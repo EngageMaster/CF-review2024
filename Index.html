@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cystic Fibrosis Year in Review 2024 - Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-purple: #8A3083;
+            --fuchsia: #B52478;
+            --magenta: #C31A6F;
+            --deep-magenta: #CD0E64;
+            --rich-magenta: #9D247B;
+            --deep-blue: #4B308E;
+            --light-grey: #F6F6F6;
+            --white: #FFFFFF;
+            --dark-grey: #555759;
+            --text-primary: #333;
+            --text-secondary: #555759;
+            --stat-positive: #28a745; /* Green for positive stats */
+            --stat-negative: #dc3545; /* Red for negative/concerning stats */
+            --stat-neutral: var(--magenta);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-grey);
+            color: var(--text-primary);
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .main-header {
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--deep-purple) 100%);
+            color: var(--white);
+            padding: 3rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--fuchsia);
+        }
+        .header-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 2.75rem; /* Increased size */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .main-author {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 1.5rem; /* Increased size */
+            opacity: 0.9;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.75rem; /* md:text-3xl */
+            padding-bottom: 0.75rem;
+            margin-bottom: 2rem; /* Increased margin */
+            display: flex;
+            align-items: center;
+            border-image-slice: 1;
+            border-image-source: linear-gradient(to right, var(--fuchsia), var(--magenta));
+            border-bottom-width: 4px;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 1rem; /* More rounded */
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1), 0 6px 12px -6px rgba(0, 0, 0, 0.08);
+            transition: transform 0.35s ease-in-out, box-shadow 0.35s ease-in-out;
+            overflow: hidden; /* For potential border accents */
+            border: 1px solid #e5e7eb; /* Subtle border */
+        }
+        .card:hover {
+            transform: translateY(-8px) scale(1.01); /* Slightly more pronounced hover */
+            box-shadow: 0 20px 40px -10px rgba(75, 48, 142, 0.2), 0 10px 20px -8px rgba(75, 48, 142, 0.15);
+        }
+        .card-header-accent {
+            height: 6px;
+        }
+
+        .stat-card {
+            background-color: #f9fafb; /* Slightly off-white for contrast */
+            padding: 1rem 1.25rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            height: 100%; /* Ensure cards in a grid row have same height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .stat-card-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .stat-card-number {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 2rem; /* Larger for dashboard feel */
+            line-height: 1.2;
+        }
+        .stat-card-unit {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-left: 0.25rem;
+        }
+        .stat-card-description {
+            font-size: 0.75rem;
+            color: #6b7280; /* Lighter secondary text */
+            margin-top: 0.25rem;
+            flex-grow: 1; /* Allows description to take up space if numbers are short */
+        }
+
+        .stat-number { /* General inline stat number */
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--stat-neutral);
+            font-size: 1.05em;
+        }
+        .stat-positive { color: var(--stat-positive); }
+        .stat-negative { color: var(--stat-negative); }
+        .stat-neutral { color: var(--stat-neutral); }
+
+        .highlight-text {
+            font-weight: 600;
+            color: var(--rich-magenta);
+        }
+        .takeaway-item {
+            border-left: 5px solid var(--deep-blue);
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.25rem;
+            font-size: 1.05em;
+            background-color: #f8f9fa;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .takeaway-item strong {
+            color: var(--deep-purple);
+        }
+
+        .main-footer {
+            background-color: var(--dark-grey);
+            color: var(--light-grey);
+            padding: 2.5rem 1rem;
+            text-align: center;
+            border-top: 5px solid var(--deep-blue);
+        }
+        .footer-text {
+            opacity: 0.9;
+        }
+        .footer-link {
+            color: var(--fuchsia);
+            text-decoration: underline;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .footer-link:hover {
+            color: var(--magenta);
+        }
+
+
+        .icon-svg {
+            width: 1.75em; height: 1.75em;
+            vertical-align: middle;
+            margin-right: 0.75rem;
+        }
+        .abstract-keywords {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: var(--deep-purple);
+            background-color: rgba(138, 48, 131, 0.1);
+            padding: 0.35rem 0.85rem;
+            border-radius: 0.375rem;
+            display: inline-block;
+            margin-bottom: 1.25rem;
+        }
+        /* Italicized text (replaces asterisks) */
+        em {
+            font-style: italic;
+        }
+
+        /* Fix for Expanding Eligibility list items */
+        .eligibility-list-item {
+            display: flex;
+            align-items: flex-start; /* Align items to the top */
+            margin-bottom: 0.75rem; /* Space between items */
+        }
+        .eligibility-list-item .icon {
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            margin-right: 0.75rem; /* Space between icon and text */
+            color: var(--stat-positive);
+            margin-top: 0.125rem; /* Align icon with first line of text */
+        }
+        .eligibility-list-item .text-content {
+            flex-grow: 1; /* Allow text to take remaining space */
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Header -->
+    <header class="main-header">
+        <h1 class="header-title">Cystic Fibrosis Year in Review 2024</h1>
+        <p class="main-author">Main Author: Amel Alameeri</p>
+        <p class="title author">Department of adult Pulmonary medicine, ST Shaikh Tahnoon medical City Hospital, Alain, AbuDhabi, UAE</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8 mt-[-50px] relative z-10"> <!-- Negative margin to pull content up slightly -->
+        <!-- Abstract Section -->
+        <section id="abstract" class="mb-12 card p-6 md:p-8">
+            <div class="card-header-accent bg-deep-blue"></div>
+            <h2 class="section-title text-deep-blue mt-6">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                Abstract
+            </h2>
+            <div class="abstract-keywords">Keywords: Cystic fibrosis</div>
+            <p class="text-base md:text-lg leading-relaxed mb-4">
+                The year <strong class="highlight-text">2024</strong> marks a pivotal moment in the field of cystic fibrosis (CF) treatment. It's characterised by <strong class="highlight-text">significant advancements</strong> in clinical care and an expanding body of literature on CF transmembrane conductance regulator (CFTR) modulators.
+            </p>
+            <p class="text-base md:text-lg leading-relaxed mb-4">
+                These CFTR therapies have <strong class="highlight-text">transformed the landscape</strong> of CF management, offered systemic benefits, and established new guidelines for assessing clinical manifestations and therapies.
+            </p>
+            <p class="text-base md:text-lg leading-relaxed mb-4">
+                Additionally, progress has been made in newborn screening (NBS), diagnosis, and understanding outcomes for individuals with CF-related metabolic syndrome or inconclusive diagnostic results.
+            </p>
+            <p class="text-base md:text-lg leading-relaxed">
+                However, amidst these clinical milestones, <strong class="highlight-text">disparities in global access</strong> to CFTR modulators (CFTRm) persist. This threatens to exacerbate existing inequities in CF care. This review provides a focused overview of the most impactful articles from 2024, highlighting both clinical advancements and pressing global accessibility challenges.
+            </p>
+        </section>
+
+        <!-- 2024: A Pivotal Year for CF -->
+        <section id="pivotal-year" class="mb-12 card p-6 md:p-8">
+            <div class="card-header-accent bg-deep-purple"></div>
+            <h2 class="section-title text-deep-purple mt-6">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20V16"></path></svg>
+                2024: A Pivotal Year for CF
+            </h2>
+            <p class="text-lg md:text-xl leading-relaxed mb-3">
+                The year <span class="stat-number stat-neutral">2024</span> marked a <strong class="highlight-text">transformative era</strong> in cystic fibrosis (CF) treatment.
+            </p>
+            <p class="text-lg md:text-xl leading-relaxed">
+                This period was characterized by significant advancements in clinical care and a growing body of literature on CF transmembrane conductance regulator (CFTR) modulators. These therapies have profoundly <strong class="highlight-text">changed CF management</strong>, offering systemic benefits and establishing new guidelines.
+            </p>
+        </section>
+
+        <!-- Adapting Standards & Addressing Global Inequities -->
+        <section id="standards-inequities" class="mb-12 card p-6 md:p-8">
+            <div class="card-header-accent bg-fuchsia"></div>
+            <h2 class="section-title text-fuchsia mt-6">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                Adapting Standards & Addressing Global Inequities
+            </h2>
+            <div class="grid md:grid-cols-2 gap-x-8 gap-y-6 mb-8">
+                <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                    <h3 class="text-xl font-semibold text-deep-blue mb-3">Updated Standards of Care (ECFS)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Guidelines updated across <span class="stat-number stat-neutral">4 key areas</span>: diagnosis, health maintenance, CF-specific issues, planning for longer life.</li>
+                        <li><span class="stat-number stat-neutral">3</span> of these articles published in 2024.</li>
+                        <li>Emphasis on a <strong class="highlight-text">multidisciplinary and holistic approach</strong>.</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                    <h3 class="text-xl font-semibold text-deep-blue mb-3">Redefining Care Models (CFF)</h3>
+                     <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Advocacy for <strong class="highlight-text">interdisciplinary collaboration</strong>.</li>
+                        <li>New roles: genetic counsellors, mental health coordinators.</li>
+                        <li>Integration of telemedicine and <strong class="highlight-text">shared decision-making</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-red-600 mb-4 flex items-center">
+                    <svg class="icon-svg text-red-500 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line><circle cx="12" cy="12" r="10"></circle><path d="M12 17h.01"></path></svg>
+                    Persistent Global Disparities: A Stark Reality
+                </h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="stat-card border-l-4 border-red-500">
+                        <div class="stat-card-title">South Africa vs. Canada</div>
+                        <div class="stat-card-number stat-negative">1.7x</div>
+                        <div class="stat-card-description">More prevalent malnutrition in cwCF in South Africa (NBS & CFTRm inaccessible). Also significantly lower lung function.</div>
+                    </div>
+                    <div class="stat-card border-l-4 border-red-500">
+                        <div class="stat-card-title">Undiagnosed Individuals</div>
+                        <div class="stat-card-number stat-negative">75,000+</div>
+                        <div class="stat-card-description">In <span class="font-semibold">55 countries</span>. <span class="font-semibold">82%</span> in low- and middle-income countries.</div>
+                    </div>
+                    <div class="stat-card border-l-4 border-red-500">
+                        <div class="stat-card-title">ETI Approval Gap</div>
+                        <div class="stat-card-number stat-negative">177</div>
+                        <div class="stat-card-description">Rare variants approved by U.S. FDA for ETI, but not adopted by European Medicines Agency.</div>
+                    </div>
+                     <div class="stat-card border-l-4 border-red-500">
+                        <div class="stat-card-title">Lung Function Trends</div>
+                        <div class="stat-card-number stat-negative">No Gain</div>
+                        <div class="stat-card-description">For pwCF in low-income countries over 10 years, unlike consistent increase in Europe.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Transformative Impact of CFTR Modulators (ETI) -->
+        <section id="cftr-impact" class="mb-12 card p-6 md:p-8">
+            <div class="card-header-accent bg-magenta"></div>
+            <h2 class="section-title text-magenta mt-6">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path><path d="M12 12H2c0 .9.1 1.7-.3 2.5"></path><path d="M12 12v10a10 10 0 0 0 10-10z"></path><path d="M12 12c0-.9-.1-1.7-.3-2.5"></path><line x1="12" y1="12" x2="12" y2="12"></line><circle cx="12" cy="12" r="2"></circle></svg>
+                The Transformative Impact of CFTR Modulators (ETI)
+            </h2>
+            <p class="text-lg md:text-xl leading-relaxed mb-6">CFTRm therapies, particularly elexacaftor-tezacaftor-ivacaftor (ETI), have demonstrated <strong class="highlight-text">broad therapeutic potential</strong> across multiple organ systems.</p>
+
+            <div class="mb-8 p-5 bg-indigo-50 rounded-lg border border-indigo-200">
+                <h4 class="text-xl font-semibold text-deep-blue mb-4">Expanding Eligibility: Hope for More Patients</h4>
+                <ul class="list-none space-y-3">
+                    <li class="eligibility-list-item">
+                        <svg class="icon w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                        <div class="text-content">Off-label ETI study (<span class="font-semibold">35 pwCF</span> with at least one N1303K variant) showed a median reduction in sweat chloride (SwCl) of <span class="stat-number stat-positive">9 mmol/L</span> and a percent predicted forced expiratory volume in 1s (ppFEV1) improvement of <span class="stat-number stat-positive">17%</span>.</div>
+                    </li>
+                    <li class="eligibility-list-item">
+                        <svg class="icon w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                        <div class="text-content">The expanded French compassionate program found that <span class="stat-number stat-positive">more than half</span> of the CF population in France without F508del variants responded to ETI.</div>
+                    </li>
+                    <li class="eligibility-list-item">
+                         <svg class="icon w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                        <div class="text-content">An <em>in vitro</em> study showed ETI increased chloride transport activity to <span class="stat-number stat-positive">≥10%</span> of normal CFTR function in <span class="stat-number stat-positive">152</span> unapproved CFTR variants.</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="stat-card">
+                    <div class="stat-card-title">Gastrointestinal Health (RECOVER Study)</div>
+                    <div class="stat-card-number stat-positive">15.0 → 9.8</div>
+                    <div class="stat-card-unit">points</div>
+                    <div class="stat-card-description">Decrease in total CF Abd-Scores (p < 0.001) over 12 months.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-title">Pediatric Liver Health (Advanced CFLD)</div>
+                    <div class="stat-card-number stat-positive">14.27%</div>
+                    <div class="stat-card-description">Improvement in ppFEV1 (p = 0.007). Liver fibrosis markers stable, stiffness reduced. ETI also reduced inflammatory markers and faecal pathogens.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-title">Body Composition (Adipose Tissue)</div>
+                    <div class="stat-card-number stat-positive">46.21%</div>
+                    <div class="stat-card-description">Increase in total adipose tissue ratio (p < 0.001) in adults after ETI therapy.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-title">Body Composition (Muscle Ratio)</div>
+                    <div class="stat-card-number stat-positive">+1.63%</div>
+                    <div class="stat-card-description">Smaller increase in muscle ratio (p = 0.008) in adults after ETI therapy.</div>
+                </div>
+                 <div class="stat-card">
+                    <div class="stat-card-title">Glucose Control (HbA1c)</div>
+                    <div class="stat-card-number stat-positive">↓ Significant</div>
+                    <div class="stat-card-description">Decline in HbA1c levels over the first year of ETI treatment, indicating improved glucose control without changes in insulin usage.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-title">Infection Clearance (<em>M. abscessus</em>)</div>
+                    <div class="stat-card-number stat-positive">66%</div>
+                    <div class="stat-card-description">Of patients achieved negative <em>Mycobacterium abscessus</em> complex cultures. Marked reduction in <em>Aspergillus fumigatus</em> colonization.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-title">Airway Health (MCC Rates)</div>
+                    <div class="stat-card-number stat-positive">14.8% → 22.8%</div>
+                    <div class="stat-card-description">Increase in whole lung mucociliary clearance (p = 0.0002) after one month of ETI therapy. Airway nitric oxide levels significantly increased.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-title">Sinonasal Health (Surgery Risk)</div>
+                    <div class="stat-card-number stat-positive">2.12%</div>
+                    <div class="stat-card-description">Absolute risk reduction for functional endoscopic sinus surgery (p < 0.0001) due to ETI.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-title">Fertility & Pregnancy</div>
+                    <div class="stat-card-number stat-positive">Improved</div>
+                    <div class="stat-card-description">ETI has significantly improved fertility and pregnancy outcomes in women with CF. No foetal congenital anomalies reported. Caution: Intrauterine ETI exposure can lower immunoreactive trypsinogen levels, potentially causing false-negative NBS results.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Re-evaluating Treatment Burdens -->
+        <section id="treatment-burdens" class="mb-12 card p-6 md:p-8">
+            <div class="card-header-accent bg-deep-magenta"></div>
+            <h2 class="section-title text-deep-magenta mt-6">
+                 <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                Re-evaluating Treatment Burdens: A Personalized Approach
+            </h2>
+            <p class="text-lg md:text-xl leading-relaxed mb-6">The significant benefits of CFTR modulators have prompted crucial discussions on <strong class="highlight-text">reducing the daily treatment burden</strong>, emphasizing a shift towards personalized care strategies.</p>
+            <div class="space-y-6">
+                <div class="p-5 bg-sky-50 rounded-lg border border-sky-200">
+                    <h4 class="text-lg font-semibold text-sky-700 mb-2">SIMPLIFY-MCC Study Findings:</h4>
+                    <p class="text-gray-700">Discontinuing hypertonic saline or dornase alfa was found to be <strong class="highlight-text text-sky-600">non-inferior</strong> to continuing treatment. Notably, discontinuation of dornase alfa resulted in <strong class="highlight-text text-sky-600">significant improvements in MCC</strong>.</p>
+                </div>
+                <div class="p-5 bg-sky-50 rounded-lg border border-sky-200">
+                    <h4 class="text-lg font-semibold text-sky-700 mb-2">SIMPLIFY Study (pwCF with ppFEV1 >60% on ETI):</h4>
+                    <p class="text-gray-700">For patients with preserved lung function (ppFEV1 > <span class="stat-number stat-neutral">60%</span>) on ETI, discontinuing daily hypertonic saline or dornase alfa for <span class="stat-number stat-neutral">6 weeks</span> did <strong class="highlight-text text-sky-600">not result in clinically significant changes</strong> in lung function.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="stat-card">
+                        <div class="stat-card-title">MPR Dornase Alfa (Post-ETI)</div>
+                        <div class="stat-card-number stat-positive">67% → 48%</div>
+                        <div class="stat-card-description">Significant decrease in medication possession rate (p < 0.001) after ETI initiation.</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-title">MPR Inhaled Antibiotics (Post-ETI)</div>
+                        <div class="stat-card-number stat-positive">62% → 41%</div>
+                        <div class="stat-card-description">Significant decrease in medication possession rate (p < 0.001) after ETI initiation.</div>
+                    </div>
+                </div>
+                 <div class="p-5 bg-teal-50 rounded-lg border border-teal-200">
+                    <h4 class="text-lg font-semibold text-teal-700 mb-2">Real-World De-escalation Success:</h4>
+                    <p class="text-gray-700">One center's algorithm led to <span class="stat-number stat-positive">139 out of 174</span> participants reducing at least one adjunctive therapy over a year. Half of these patients achieved a <span class="stat-number stat-positive">50% reduction</span> in supportive therapies <strong class="highlight-text text-teal-600">without any deterioration in patient outcomes</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Holistic Care: Mental Health & Beyond -->
+        <section id="holistic-care" class="mb-12 card p-6 md:p-8">
+            <div class="card-header-accent bg-rich-magenta"></div>
+            <h2 class="section-title text-rich-magenta mt-6">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                Holistic Care: Mental Health & Beyond
+            </h2>
+            <p class="text-lg md:text-xl leading-relaxed mb-6">Recent research increasingly addresses the comprehensive well-being of people with CF, encompassing physical, mental, financial, and social aspects.</p>
+            <div class="grid md:grid-cols-2 gap-x-8 gap-y-6">
+                <div class="p-5 bg-green-50 rounded-lg border border-green-200">
+                    <h4 class="text-lg font-semibold text-green-700 mb-2">Overall Improvements with CFTRm:</h4>
+                    <p class="text-sm text-green-800">Most pwCF on CFTR modulators reported improvements in overall health, quality of life, and both physical and social well-being.</p>
+                </div>
+                <div class="p-5 bg-yellow-50 rounded-lg border-2 border-yellow-300">
+                    <h4 class="text-lg font-semibold text-yellow-700 mb-2 flex items-center">
+                         <svg class="icon-svg text-yellow-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        Mental Health: A Mixed Picture
+                    </h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-yellow-800">
+                        <li>Mental well-being reported to <strong class="font-semibold">still deteriorate at similar rates</strong> regardless of CFTRm use.</li>
+                        <li>Anxiety scores improved by <span class="stat-number stat-positive">20%</span>, depression by <span class="stat-number stat-positive">30%</span>.</li>
+                        <li>However, <span class="stat-number stat-negative">10%</span> exhibited worse scores, often those with preexisting psychiatric diagnoses.</li>
+                    </ul>
+                </div>
+                <!-- REMOVED: Paediatric Neuropsychiatric Events (ETI) stat card -->
+                <div class="stat-card">
+                    <div class="stat-card-title">Adherence to CFTRm</div>
+                    <div class="stat-card-number stat-neutral">73-89%</div>
+                    <div class="stat-card-description">Mean adherence rates appeared better than traditional CF therapies but were still suboptimal.</div>
+                </div>
+                <!-- REMOVED: Substance Use (Marijuana) stat card -->
+            </div>
+        </section>
+
+        <!-- Glimpses into the Future of CF Care -->
+        <section id="future-care" class="mb-12 card p-6 md:p-8">
+            <div class="card-header-accent bg-deep-blue"></div>
+            <h2 class="section-title text-deep-blue mt-6">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.09 16.91A7.002 7.002 0 0 1 9 22a7 7 0 0 1-6.09-9.09C2.91 12.91 2 12.06 2 11c0-2.06.91-3.91 2.91-4.91A7.002 7.002 0 0 1 9 2a7 7 0 0 1 6.09 9.09C15.09 11.09 16 11.94 16 13c0 2.06-.91 3.91-2.91 4.91z"></path><path d="M12 22v-2"></path><path d="M12 2v-2"></path><path d="M4.93 4.93l1.41 1.41"></path><path d="M17.66 17.66l1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="M4.93 19.07l1.41-1.41"></path><path d="M17.66 6.34l1.41-1.41"></path></svg>
+                Glimpses into the Future of CF Care: Innovations on the Horizon
+            </h2>
+            <p class="text-lg md:text-xl leading-relaxed mb-6">There is <strong class="highlight-text">substantial hope for the future</strong>, particularly for individuals who do not currently benefit from existing CFTR modulators.</p>
+            <div class="grid md:grid-cols-2 gap-x-8 gap-y-6">
+                <div class="p-5 bg-purple-50 rounded-lg border border-purple-200">
+                    <h4 class="text-lg font-semibold text-deep-purple mb-2">Personalized Therapy Advances:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        <li>Patient-derived intestinal organoids (PDIOs) show promise for <em>in vitro</em>, patient-specific drug testing.</li>
+                        <li>Pharmacokinetics studies highlight <strong class="highlight-text">significant variability</strong> in drug concentrations, emphasizing the critical need for <strong class="highlight-text">personalized dosing strategies</strong>.</li>
+                    </ul>
+                </div>
+                <div class="p-5 bg-purple-50 rounded-lg border border-purple-200">
+                    <h4 class="text-lg font-semibold text-deep-purple mb-2">AI-Based Diagnostics:</h4>
+                    <p class="text-sm text-gray-700">AI-based chest CT results are proving highly sensitive in detecting and monitoring structural lung disease, showing a <strong class="highlight-text">reduction in bronchial wall thickness</strong> in young children.</p>
+                </div>
+                <div class="p-5 bg-purple-50 rounded-lg border border-purple-200">
+                    <h4 class="text-lg font-semibold text-deep-purple mb-2">New Drug Classes Explored:</h4>
+                    <p class="text-sm text-gray-700">Renewed exploration of epithelial sodium channel blockers is underway, offering potential new avenues for treatment.</p>
+                </div>
+                <div class="p-5 bg-purple-50 rounded-lg border border-purple-200">
+                    <h4 class="text-lg font-semibold text-deep-purple mb-2">RNA & DNA Targeting Progress:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        <li>Progress is being made with novel readthrough inducers (e.g., TLN468).</li>
+                        <li>Development of <strong class="highlight-text">third-generation lentiviral vectors</strong>.</li>
+                        <li>Patient recruitment for gene therapy trials starting in <span class="stat-number stat-neutral">2024</span>.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusions & Key Takeaways -->
+        <section id="conclusions" class="mb-12 card p-6 md:p-8">
+            <div class="card-header-accent bg-deep-purple"></div>
+            <h2 class="section-title text-deep-purple mt-6">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Conclusions & Key Takeaways
+            </h2>
+            <ul class="space-y-4">
+                <li class="takeaway-item"><strong >Multifaceted Efficacy of CFTRm:</strong> A growing body of evidence supports the broad and significant impact of CFTR modulators.</li>
+                <li class="takeaway-item"><strong >Evolving Care Models:</strong> The changing landscape of CF necessitates a fundamental shift in care models, requiring integration of diverse specialties and digital health technologies.</li>
+                <li class="takeaway-item"><strong >Personalization is Key:</strong> Therapy personalization, including careful assessment of CFTRm dosages and adjunctive therapies, is vital, as a single treatment model may not suit every patient.</li>
+                <li class="takeaway-item"><strong >Addressing Disparities:</strong> Global disparities in access to comprehensive care and CFTR modulators remain a <strong class="text-red-600">significant challenge</strong> that must be urgently addressed.</li>
+                <li class="takeaway-item"><strong >Optimistic Outlook:</strong> The development of new drug classes and innovative RNA- and DNA-based treatments holds the potential to <strong class="text-green-600">unlock new frontiers</strong> in CF care.</li>
+                <li class="takeaway-item"><strong >Fusion of Science & Equity:</strong> Overcoming challenges and seizing opportunities will require the fusion of innovative science with equitable healthcare delivery worldwide.</li>
+            </ul>
+        </section>
+
+        <!-- Abbreviations -->
+        <section id="abbreviations" class="mb-12 card p-6 md:p-8">
+             <div class="card-header-accent bg-fuchsia"></div>
+            <h2 class="section-title text-fuchsia mt-6">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                Abbreviations
+            </h2>
+            <ul class="list-none grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3 text-sm text-gray-700">
+                <li><strong class="text-deep-blue">CF:</strong> Cystic fibrosis</li>
+                <li><strong class="text-deep-blue">CFF:</strong> Cystic Fibrosis Foundation</li>
+                <li><strong class="text-deep-blue">CFTR:</strong> Cystic fibrosis transmembrane conductance regulator</li>
+                <li><strong class="text-deep-blue">CFTRm:</strong> CFTR modulators</li>
+                <li><strong class="text-deep-blue">CFLD:</strong> CF liver disease</li>
+                <li><strong class="text-deep-blue">CFSPID:</strong> Cystic Fibrosis Screen Positive Inconclusive Diagnosis</li>
+                <li><strong class="text-deep-blue">CFTR-RD:</strong> CFTR-related disorder</li>
+                <li><strong class="text-deep-blue">cwCF:</strong> children with CF</li>
+                <li><strong class="text-deep-blue">ECFS:</strong> The European Cystic Fibrosis Society</li>
+                <li><strong class="text-deep-blue">ETI:</strong> Elexacaftor-Tezacaftor-Ivacaftor</li>
+                <li><strong class="text-deep-blue">HbA1c:</strong> Glycated haemoglobin</li>
+                <li><strong class="text-deep-blue">MCC:</strong> Mucociliary Clearance</li>
+                <li><strong class="text-deep-blue">MPR:</strong> Medication possession rate</li>
+                <li><strong class="text-deep-blue">NBS:</strong> Newborn screening</li>
+                <li><strong class="text-deep-blue">PDIOs:</strong> Patient-derived intestinal organoids</li>
+                <li><strong class="text-deep-blue">ppFEV1:</strong> Percent predicted forced expiratory volume in 1s</li>
+                <li><strong class="text-deep-blue">pwCF:</strong> People with CF</li>
+                <li><strong class="text-deep-blue">pwCFTR-RD:</strong> People with CFTR-RD</li>
+                <li><strong class="text-deep-blue">SwCl:</strong> Sweat chloride</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container mx-auto">
+            <p class="footer-text text-lg font-semibold mb-3">
+                Cystic Fibrosis Year in Review 2024
+            </p>
+            <p class="footer-text text-sm mb-1">
+                Journal: Journal of Cystic Fibrosis 2025
+            </p>
+            <p class="footer-text text-sm mb-4">
+                Publishing Date: 2025 | Please cite this article as: Amel Alameeri et al., Journal of Cystic Fibrosis, https://doi.org/10.1016/j.jcf.2025.02.012
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
